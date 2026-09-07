@@ -49,16 +49,16 @@ export function PersonalizationForm({
 
   const validate = () => {
     const next: Record<string, string> = {};
-    if (!form.recipient) next.recipient = "Please choose who this is for.";
-    if (allowDesignChoice && !designSlug) next.design = "Please choose a design.";
+    if (!form.recipient) next["recipient"] = "Please choose who this is for.";
+    if (allowDesignChoice && !designSlug) next["design"] = "Please choose a design.";
     if (!form.name.trim() && !form.message.trim()) {
-      next.message = "Add a name or a message to engrave.";
+      next["message"] = "Add a name or a message to engrave.";
     }
     if (form.name.length > productSettings.nameMaxLength) {
-      next.name = `Names are limited to ${productSettings.nameMaxLength} characters.`;
+      next["name"] = `Names are limited to ${productSettings.nameMaxLength} characters.`;
     }
     if (form.message.length > productSettings.messageMaxLength) {
-      next.message = `Messages are limited to ${productSettings.messageMaxLength} characters.`;
+      next["message"] = `Messages are limited to ${productSettings.messageMaxLength} characters.`;
     }
     setErrors(next);
     return Object.keys(next).length === 0;
@@ -90,7 +90,7 @@ export function PersonalizationForm({
       imageAlt: image?.alt ?? selected.title,
       price: selected.price,
       quantity,
-      personalization: { ...form, photoName },
+      personalization: photoName ? { ...form, photoName } : { ...form },
     });
     toast.success("Added to cart. Please review your spelling before checkout.");
     void navigate({ to: "/cart" });
@@ -117,7 +117,7 @@ export function PersonalizationForm({
                 </option>
               ))}
             </select>
-            <FieldError message={errors.recipient} />
+            <FieldError message={errors["recipient"]} />
           </div>
 
           {allowDesignChoice ? (
@@ -141,7 +141,7 @@ export function PersonalizationForm({
                   </option>
                 ))}
               </select>
-              <FieldError message={errors.design} />
+              <FieldError message={errors["design"]} />
             </div>
           ) : (
             <div>
@@ -177,7 +177,7 @@ export function PersonalizationForm({
               placeholder="Name to engrave"
               className={fieldClass}
             />
-            <FieldError message={errors.name} />
+            <FieldError message={errors["name"]} />
           </div>
           <div>
             <label htmlFor="date" className={labelClass}>
@@ -207,7 +207,7 @@ export function PersonalizationForm({
             className={cn(fieldClass, "resize-none")}
           />
           <div className="mt-1.5 flex items-center justify-between">
-            <FieldError message={errors.message} />
+            <FieldError message={errors["message"]} />
             <p className="text-xs text-muted-foreground">
               {form.message.length}/{productSettings.messageMaxLength}
             </p>

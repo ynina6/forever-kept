@@ -51,10 +51,10 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const hero = imageById("for-her-06") ?? productImages["for-her"][0];
-const storyImage = imageById("daughter-01") ?? productImages.daughter[0];
-const customImage = imageById("custom-02") ?? productImages.custom[0];
-const finalImage = imageById("custom-08") ?? productImages.custom[1];
+const hero = imageById("for-her-06") ?? productImages["for-her"][0]!;
+const storyImage = imageById("daughter-01") ?? productImages.daughter[0]!;
+const customImage = imageById("custom-02") ?? productImages.custom[0]!;
+const finalImage = imageById("custom-08") ?? productImages.custom[1]!;
 const instagramImages = [
   "daughter-08",
   "son-01",
