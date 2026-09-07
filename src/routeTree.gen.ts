@@ -15,6 +15,7 @@ import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as PersonalizeRouteImport } from './routes/personalize'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
 import { Route as ShopIndexRouteImport } from './routes/shop.index'
 import { Route as ShopCategoryRouteImport } from './routes/shop.$category'
@@ -49,6 +50,11 @@ const PersonalizeRoute = PersonalizeRouteImport.update({
   path: '/personalize',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductSlugRoute = ProductSlugRouteImport.update({
   id: '/product/$slug',
   path: '/product/$slug',
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/checkout': typeof CheckoutRoute
   '/faq': typeof FaqRoute
   '/personalize': typeof PersonalizeRoute
+  '/privacy': typeof PrivacyRoute
   '/product/$slug': typeof ProductSlugRoute
   '/shop/$category': typeof ShopCategoryRoute
   '/shop/': typeof ShopIndexRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/checkout': typeof CheckoutRoute
   '/faq': typeof FaqRoute
   '/personalize': typeof PersonalizeRoute
+  '/privacy': typeof PrivacyRoute
   '/product/$slug': typeof ProductSlugRoute
   '/shop/$category': typeof ShopCategoryRoute
   '/shop': typeof ShopIndexRoute
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/checkout': typeof CheckoutRoute
   '/faq': typeof FaqRoute
   '/personalize': typeof PersonalizeRoute
+  '/privacy': typeof PrivacyRoute
   '/product/$slug': typeof ProductSlugRoute
   '/shop/$category': typeof ShopCategoryRoute
   '/shop/': typeof ShopIndexRoute
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/faq'
     | '/personalize'
+    | '/privacy'
     | '/product/$slug'
     | '/shop/$category'
     | '/shop/'
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/faq'
     | '/personalize'
+    | '/privacy'
     | '/product/$slug'
     | '/shop/$category'
     | '/shop'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/faq'
     | '/personalize'
+    | '/privacy'
     | '/product/$slug'
     | '/shop/$category'
     | '/shop/'
@@ -142,6 +154,7 @@ export interface RootRouteChildren {
   CheckoutRoute: typeof CheckoutRoute
   FaqRoute: typeof FaqRoute
   PersonalizeRoute: typeof PersonalizeRoute
+  PrivacyRoute: typeof PrivacyRoute
   ProductSlugRoute: typeof ProductSlugRoute
   ShopCategoryRoute: typeof ShopCategoryRoute
   ShopIndexRoute: typeof ShopIndexRoute
@@ -191,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PersonalizeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/product/$slug': {
       id: '/product/$slug'
       path: '/product/$slug'
@@ -222,6 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutRoute: CheckoutRoute,
   FaqRoute: FaqRoute,
   PersonalizeRoute: PersonalizeRoute,
+  PrivacyRoute: PrivacyRoute,
   ProductSlugRoute: ProductSlugRoute,
   ShopCategoryRoute: ShopCategoryRoute,
   ShopIndexRoute: ShopIndexRoute,
